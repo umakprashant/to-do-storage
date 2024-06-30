@@ -35,6 +35,7 @@ export class CreateToDoComponent {
         task: this.data.task,
         description: this.data.description,
         dueDate: this.data.dueDate,
+        status: this.data.status,
       });
     }
   }
@@ -44,6 +45,7 @@ export class CreateToDoComponent {
       task: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       dueDate: new FormControl(null, Validators.required),
+      status: new FormControl(true, Validators.required),
     });
   }
 
@@ -55,6 +57,7 @@ export class CreateToDoComponent {
       task: this.toDoForm.value.task,
       description: this.toDoForm.value.description,
       dueDate: this.toDoForm.value.dueDate,
+      status: this.toDoForm.value.status,
     };
     if (itemIndex > -1) {
       toDoData.splice(itemIndex, 1, request);
@@ -69,6 +72,7 @@ export class CreateToDoComponent {
       task: this.toDoForm.value.task,
       description: this.toDoForm.value.description,
       dueDate: this.toDoForm.value.dueDate,
+      status: this.toDoForm.value.status,
     };
     this._storage.setData(request);
     this.close();
