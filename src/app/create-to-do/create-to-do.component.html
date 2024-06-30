@@ -1,0 +1,46 @@
+<div class="myForm">
+  <h2>Add To-Do</h2>
+  <form [formGroup]="toDoForm">
+    <mat-form-field>
+      <mat-label>Task</mat-label>
+      <input type="text" matInput formControlName="task" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input type="text" matInput formControlName="description" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Due Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dueDate" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="btn-group">
+      <button
+        mat-raised-button
+        color="accent"
+        *ngIf="!dataId"
+        [disabled]="toDoForm.invalid"
+        (click)="submit()"
+      >
+        Submit
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        *ngIf="dataId"
+        [disabled]="toDoForm.invalid"
+        (click)="update()"
+      >
+        Update
+      </button>
+      <button mat-flat-button color="danger" (click)="close()">Cancel</button>
+    </div>
+  </form>
+</div>
