@@ -14,25 +14,82 @@
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef>No.</th>
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+
+      <td
+        [ngClass]="element.status ? '' : 'strikethrough'"
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.id }}
+      </td>
     </ng-container>
 
     <!-- Task Column -->
     <ng-container matColumnDef="task">
       <th mat-header-cell *matHeaderCellDef>Task</th>
-      <td mat-cell *matCellDef="let element">{{ element.task }}</td>
+      <td
+        [ngClass]="element.status ? '' : 'strikethrough'"
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.task }}
+      </td>
     </ng-container>
 
     <!-- Description Column -->
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef>Description</th>
-      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+
+      <td
+        [ngClass]="element.status ? '' : 'strikethrough'"
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.description }}
+      </td>
     </ng-container>
 
     <!-- Due Date Column -->
     <ng-container matColumnDef="dueDate">
       <th mat-header-cell *matHeaderCellDef>Due Date</th>
-      <td mat-cell *matCellDef="let element">{{ element.dueDate }}</td>
+
+      <td
+        [ngClass]="element.status ? '' : 'strikethrough'"
+        mat-cell
+        *matCellDef="let element"
+      >
+        <p>{{ element.dueDate | date : "yyyy-MM-dd" }}</p>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+
+      <td
+        [ngClass]="element.status ? '' : 'strikethrough'"
+        mat-cell
+        *matCellDef="let element"
+      >
+        @if(element.status){
+        <button
+          mat-raised-button
+          class="action-button"
+          color="accent"
+          (click)="changeStatus(element.status, element)"
+        >
+          Pending
+        </button>
+        }@else{
+        <button
+          mat-raised-button
+          class="action-button"
+          color="accent"
+          style="background-color: green"
+          (click)="changeStatus(element.status, element)"
+        >
+          Done
+        </button>
+        }
+      </td>
     </ng-container>
 
     <!-- Action Column -->
@@ -45,7 +102,7 @@
           color="accent"
           (click)="editItem(element.id, element)"
         >
-          Edit
+          <mat-icon>edit</mat-icon>
         </button>
         <button
           class="action-button"
@@ -53,7 +110,7 @@
           color="warn"
           (click)="deleteItem(element.id)"
         >
-          Delete
+          <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>

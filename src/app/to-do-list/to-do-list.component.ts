@@ -21,6 +21,7 @@ export class ToDoListComponent {
     'task',
     'description',
     'dueDate',
+    'status',
     'action',
   ];
   dataSource = [];
@@ -53,5 +54,21 @@ export class ToDoListComponent {
       this.dataSource = getToDoData;
       console.log(`Dialog result: ${result}`);
     });
+  }
+  changeStatus(status, data) {
+    const toDoData = this._storage.getData();
+    let itemIndex = toDoData.findIndex((res) => res.id === data.id);
+    const request = {
+      id: data.id,
+      task: data.task,
+      description: data.description,
+      dueDate: data.dueDate,
+      status: !status,
+    };
+    if (itemIndex > -1) {
+      toDoData.splice(itemIndex, 1, request);
+    }
+    this._storage.deleteData(toDoData);
+    this.dataSource = this._storage.getData() ? this._storage.getData() : [];
   }
 }
