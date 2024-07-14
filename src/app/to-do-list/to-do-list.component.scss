@@ -7,6 +7,14 @@ body {
   margin: 10px;
   margin-right: 10px;
 }
+.btn-group {
+  margin: 10px;
+  align-items: center;
+  display: flex;
+  h1 {
+    flex-grow: 1;
+  }
+}
 .table-container {
   width: 100%;
   overflow: auto;
