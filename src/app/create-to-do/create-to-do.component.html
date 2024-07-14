@@ -12,7 +12,13 @@
 
     <mat-form-field>
       <mat-label>Due Date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dueDate" />
+      <input
+        matInput
+        readonly
+        (click)="openDate()"
+        [matDatepicker]="picker"
+        formControlName="dueDate"
+      />
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle
         matIconSuffix

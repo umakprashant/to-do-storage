@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, inject, ViewChild, viewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
@@ -15,6 +15,7 @@ import { StorageService } from '../storage.service';
 export class CreateToDoComponent {
   public toDoForm: FormGroup;
   public dataId: number;
+  @ViewChild('picker') picker: any;
   constructor(
     public dialogRef: MatDialogRef<CreateToDoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -80,5 +81,8 @@ export class CreateToDoComponent {
 
   public close() {
     this.dialogRef.close();
+  }
+  public openDate() {
+    this.picker.open();
   }
 }
